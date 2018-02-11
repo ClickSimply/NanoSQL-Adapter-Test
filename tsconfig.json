@@ -12,5 +12,8 @@
         "noImplicitThis": true,
         "noImplicitUseStrict": true
     },
-    "include": ["./test.ts"]
+    "include": ["./test.ts"],
+    "exclude": [
+        "node_modules"
+    ]
   }
