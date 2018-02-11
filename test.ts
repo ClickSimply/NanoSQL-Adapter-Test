@@ -55,10 +55,8 @@ export class TestAdapter {
         }).then(() => {
             console.log("✓ Delete Tests Passed");
             console.log("✓ All Tests Passed!******");
-            process.exit();
         }).catch((e) => {
             console.error("Test Failed", e);
-            process.exit();
         });
     }
 
@@ -81,7 +79,7 @@ export class TestAdapter {
                     titles.push("Title " + (i + 1));
                 }
                 fastCHAIN(titles, (title, i, done) => {
-                    adapter.write("test", null, {name: title}, done, true);
+                    adapter.write("test", null, {name: title}, done);
                 }).then(res);
             });
         }).then(() => {
@@ -128,7 +126,7 @@ export class TestAdapter {
                     index.push(i + 1);
                 }
                 fastCHAIN(titles, (title, i, done) => {
-                    adapter.write("test", null, {name: title}, done, true);
+                    adapter.write("test", null, {name: title}, done);
                 }).then(res);
             });
         }).then(() => {
@@ -243,7 +241,7 @@ export class TestAdapter {
                 index.sort((a, b) => a > b ? 1 : -1);
                 allRows.sort((a, b) => a.id > b.id ? 1 : -1);
                 fastCHAIN(allRows, (row, i, done) => {
-                    adapter.write("test", row.id, row, done, true);
+                    adapter.write("test", row.id, row, done);
                 }).then(res);
             });
         }).then(() => {
@@ -361,7 +359,7 @@ export class TestAdapter {
                         myConsole.assert(condition, "Insert Test");
                         condition ? res() : rej(row);
                     });
-                }, true);
+                });
             });
         }).then(() => {
             // Make sure existing rows are updated correctly
@@ -372,7 +370,7 @@ export class TestAdapter {
                         myConsole.assert(condition, "Update Test");
                         condition ? res() : rej(row);
                     });
-                }, false);
+                });
             });
         }).then(() => {
             // Make sure existing rows are replaced correctly
@@ -383,7 +381,7 @@ export class TestAdapter {
                         myConsole.assert(condition, "Replace Test");
                         condition ? res() : rej(row);
                     });
-                }, true);
+                });
             });
         }).then(() => {
             return new Promise((res, rej) => {
@@ -426,7 +424,7 @@ export class TestAdapter {
                     const condition = equals(row, {name: "Test", id: 1});
                     myConsole.assert(condition, "Test Auto Incriment Integer.");
                     condition ? res() : rej(row);
-                }, true);
+                });
             });
         }).then(() => {
             // UUID test
@@ -435,7 +433,7 @@ export class TestAdapter {
                     const condition = row.id.match(/^\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$/);
                     myConsole.assert(condition, "Test UUID.");
                     condition ? res() : rej(row.id);
-                }, true);
+                });
             });
         }).then(() => {
             // TimeID Test
@@ -444,7 +442,7 @@ export class TestAdapter {
                     const condition = row.id.match(/^\w{10}-\w{1,5}$/);
                     myConsole.assert(condition, "Test timeId.");
                     condition ? res() : rej(row.id);
-                }, true);
+                });
             });
         }).then(() => {
             // TimeIDMS test
@@ -453,7 +451,7 @@ export class TestAdapter {
                     const condition = row.id.match(/^\w{13}-\w{1,5}$/);
                     myConsole.assert(condition, "Test timeIdms.");
                     condition ? res() : rej(row.id);
-                }, true);
+                });
             });
         }).then(() => {
             // Ordered Primary Key Test
@@ -465,7 +463,7 @@ export class TestAdapter {
                 }
 
                 fastCHAIN(UUIDs, (uuid, i, done) => {
-                    adapter.write("test5", uuid, { name: "Test" }, done, true);
+                    adapter.write("test5", uuid, { name: "Test" }, done);
                 }).then(() => {
 
                     UUIDs.sort();

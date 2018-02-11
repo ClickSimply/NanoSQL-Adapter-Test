@@ -1,6 +1,6 @@
 {
   "name": "NanoSQL-Adapter-Test",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Test custom NanoSQL adapters",
   "main": "test.js",
   "scripts": {
@@ -20,7 +20,7 @@
   "homepage": "https://github.com/ClickSimply/NanoSQL-Adapter-Test#readme",
   "dependencies": {
     "lie-ts": "^3.7.0",
-    "nano-sql": "^1.3.2"
+    "nano-sql": "^1.3.3"
   },
   "devDependencies": {
     "typescript": "^2.6.2"

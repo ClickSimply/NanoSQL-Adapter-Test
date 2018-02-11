@@ -37,10 +37,8 @@ var TestAdapter = (function () {
         }).then(function () {
             console.log("✓ Delete Tests Passed");
             console.log("✓ All Tests Passed!******");
-            process.exit();
         }).catch(function (e) {
             console.error("Test Failed", e);
-            process.exit();
         });
     }
     TestAdapter.prototype.Deletes = function () {
@@ -61,7 +59,7 @@ var TestAdapter = (function () {
                     titles.push("Title " + (i + 1));
                 }
                 utilities_1.fastCHAIN(titles, function (title, i, done) {
-                    adapter.write("test", null, { name: title }, done, true);
+                    adapter.write("test", null, { name: title }, done);
                 }).then(res);
             });
         }).then(function () {
@@ -105,7 +103,7 @@ var TestAdapter = (function () {
                     index.push(i + 1);
                 }
                 utilities_1.fastCHAIN(titles, function (title, i, done) {
-                    adapter.write("test", null, { name: title }, done, true);
+                    adapter.write("test", null, { name: title }, done);
                 }).then(res);
             });
         }).then(function () {
@@ -213,7 +211,7 @@ var TestAdapter = (function () {
                 index.sort(function (a, b) { return a > b ? 1 : -1; });
                 allRows.sort(function (a, b) { return a.id > b.id ? 1 : -1; });
                 utilities_1.fastCHAIN(allRows, function (row, i, done) {
-                    adapter.write("test", row.id, row, done, true);
+                    adapter.write("test", row.id, row, done);
                 }).then(res);
             });
         }).then(function () {
@@ -325,7 +323,7 @@ var TestAdapter = (function () {
                         utils_1.myConsole.assert(condition, "Insert Test");
                         condition ? res() : rej(row);
                     });
-                }, true);
+                });
             });
         }).then(function () {
             return new lie_ts_1.Promise(function (res, rej) {
@@ -335,7 +333,7 @@ var TestAdapter = (function () {
                         utils_1.myConsole.assert(condition, "Update Test");
                         condition ? res() : rej(row);
                     });
-                }, false);
+                });
             });
         }).then(function () {
             return new lie_ts_1.Promise(function (res, rej) {
@@ -345,7 +343,7 @@ var TestAdapter = (function () {
                         utils_1.myConsole.assert(condition, "Replace Test");
                         condition ? res() : rej(row);
                     });
-                }, true);
+                });
             });
         }).then(function () {
             return new lie_ts_1.Promise(function (res, rej) {
@@ -385,7 +383,7 @@ var TestAdapter = (function () {
                     var condition = utils_1.equals(row, { name: "Test", id: 1 });
                     utils_1.myConsole.assert(condition, "Test Auto Incriment Integer.");
                     condition ? res() : rej(row);
-                }, true);
+                });
             });
         }).then(function () {
             return new lie_ts_1.Promise(function (res, rej) {
@@ -393,7 +391,7 @@ var TestAdapter = (function () {
                     var condition = row.id.match(/^\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$/);
                     utils_1.myConsole.assert(condition, "Test UUID.");
                     condition ? res() : rej(row.id);
-                }, true);
+                });
             });
         }).then(function () {
             return new lie_ts_1.Promise(function (res, rej) {
@@ -401,7 +399,7 @@ var TestAdapter = (function () {
                     var condition = row.id.match(/^\w{10}-\w{1,5}$/);
                     utils_1.myConsole.assert(condition, "Test timeId.");
                     condition ? res() : rej(row.id);
-                }, true);
+                });
             });
         }).then(function () {
             return new lie_ts_1.Promise(function (res, rej) {
@@ -409,7 +407,7 @@ var TestAdapter = (function () {
                     var condition = row.id.match(/^\w{13}-\w{1,5}$/);
                     utils_1.myConsole.assert(condition, "Test timeIdms.");
                     condition ? res() : rej(row.id);
-                }, true);
+                });
             });
         }).then(function () {
             return new lie_ts_1.Promise(function (res, rej) {
@@ -418,7 +416,7 @@ var TestAdapter = (function () {
                     UUIDs.push(utilities_1.uuid());
                 }
                 utilities_1.fastCHAIN(UUIDs, function (uuid, i, done) {
-                    adapter.write("test5", uuid, { name: "Test" }, done, true);
+                    adapter.write("test5", uuid, { name: "Test" }, done);
                 }).then(function () {
                     UUIDs.sort();
                     var keys = [];
