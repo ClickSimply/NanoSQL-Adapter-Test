@@ -1,9 +1,10 @@
 {
   "name": "NanoSQL-Adapter-Test",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Test custom NanoSQL adapters",
-  "main": "webpack.config.js",
+  "main": "test.js",
   "scripts": {
+    "build": "tsc",
     "test-browser": "webpack -p && http-server"
   },
   "repository": {
