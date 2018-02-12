@@ -55,7 +55,9 @@ export class TestAdapter {
         }).then(() => {
             console.log("✓ Delete Tests Passed");
             console.log("✓ All Tests Passed!******");
+            process.exit();
         }).catch((e) => {
+            process.exit();
             console.error("Test Failed", e);
         });
     }
@@ -364,7 +366,7 @@ export class TestAdapter {
         }).then(() => {
             // Make sure existing rows are updated correctly
             return new Promise((res, rej) => {
-                adapter.write("test", 1 as any, { name: "Testing" }, (row) => {
+                adapter.write("test", 1 as any, { name: "Testing", posts: [1, 2] }, (row) => {
                     adapter.read("test", row.id, (row) => {
                         const condition = equals(row, {name: "Testing", id: 1, posts: [1, 2]});
                         myConsole.assert(condition, "Update Test");

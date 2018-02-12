@@ -37,7 +37,9 @@ var TestAdapter = (function () {
         }).then(function () {
             console.log("✓ Delete Tests Passed");
             console.log("✓ All Tests Passed!******");
+            process.exit();
         }).catch(function (e) {
+            process.exit();
             console.error("Test Failed", e);
         });
     }
@@ -327,7 +329,7 @@ var TestAdapter = (function () {
             });
         }).then(function () {
             return new lie_ts_1.Promise(function (res, rej) {
-                adapter.write("test", 1, { name: "Testing" }, function (row) {
+                adapter.write("test", 1, { name: "Testing", posts: [1, 2] }, function (row) {
                     adapter.read("test", row.id, function (row) {
                         var condition = utils_1.equals(row, { name: "Testing", id: 1, posts: [1, 2] });
                         utils_1.myConsole.assert(condition, "Update Test");
